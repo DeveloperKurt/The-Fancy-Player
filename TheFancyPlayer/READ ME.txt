@@ -1,0 +1,20 @@
+﻿          -------------------Thanks for using this fancy music player!--------------------
+
+
+Here are some notes that might be useful. You can read this file again in its installation location (Default Path :program files(x86)):
+
+You will need to reference Bunifu framework in order to read or change its source code. https://devtools.bunifu.co.ke/
+
+To install the The Fancy Player, run the installer at : SetupWizard -> The Fancy Player Installer.msi
+
+To change the interface size to the smaller version, click to orange menu button at top left. To minimize it click to arrow at left side of the top panel.
+
+Keep the exe file with all other files that the installation folder contains. If you want to change it's location, make a shortcut.
+
+If you find a bug or you have a request feel free to send them to me via the "Contac " button on the application.
+
+If the Multi media keys don't work while playing some games, run this program as administrator.
+
+If you've changed the picture at left top and want default picture back, delete the "CustomImageLocation.dat" file You can find it in "C:\Users%USERNAME%\AppData\Roaming\TheFancyPlayer" ( you might need to choose " show hidden files " from file explorer.)
+
+You can uninstall in its install location by clicking "Uninstall".
