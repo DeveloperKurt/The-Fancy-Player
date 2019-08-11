@@ -381,7 +381,7 @@ namespace TheFancyPlayer
             {
                 try
                 {
-                    if ((int)audioFileReader.CurrentTime.Milliseconds != (int)audioFileReader.TotalTime.Milliseconds)
+                    if ((long)audioFileReader.CurrentTime.Ticks != (long)audioFileReader.TotalTime.Ticks)
                     {
                         bw.ReportProgress((int)audioFileReader.CurrentTime.TotalSeconds);
 
@@ -390,9 +390,10 @@ namespace TheFancyPlayer
                     else
                         break;
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
                     pauseBackgroundWorker.WaitOne(Timeout.Infinite);
+                    Console.WriteLine("Exception thrown when playing the song: " + exception.Message + " \n" + exception.StackTrace);
                    
                 }
                
