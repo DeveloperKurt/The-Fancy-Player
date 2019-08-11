@@ -40,9 +40,9 @@ namespace TheFancyPlayer
         public bool shuffleEnabled { get; set; }
         public bool Muted { get; set; }
         public bool playArgs { get; set; }
-        public string[] playlistNames { get; set; }  // all musics name in folder, play those at listview
-        public string[] playlist { get; set; } // all paths of musics in folder
-        public string[] shuffledPlaylist { get; set; } // If you want to use shuffle function, first you have to fill this array with playlist
+        public string[] playlistNames { get; set; }  // all musics name inside of the folder, show these in the listview
+        public string[] playlist { get; set; } // all paths of the musics inside of the folder
+        public string[] shuffledPlaylist { get; set; } // If you want to use the shuffle function, first you have to fill this array with a playlist
         public string[] shuffledFilesNames { get; set; }
         public string[] argPlayList { get; set; }
         public string[] argPlayListNames { get; set; }
@@ -379,9 +379,10 @@ namespace TheFancyPlayer
             
             while (true)
             {
-                try
+                if(audioFileReader!=null)
                 {
-                    if ((long)audioFileReader.CurrentTime.Ticks != (long)audioFileReader.TotalTime.Ticks)
+                  
+                    if ((long)audioFileReader.CurrentTime.Ticks < (long)audioFileReader.TotalTime.Ticks)
                     {
                         bw.ReportProgress((int)audioFileReader.CurrentTime.TotalSeconds);
 
@@ -390,11 +391,17 @@ namespace TheFancyPlayer
                     else
                         break;
                 }
-                catch (Exception exception)
+                else 
                 {
-            
-                    Console.WriteLine("Exception thrown when playing the song: " + exception.Message + " \n" + exception.StackTrace);
-                    break;
+                    //Sometimes audioFileReader is not loaded when the progaram reaches to this point. 
+                    //Therefore retry in each WAIT_TIME_IN_MS  to check if it is loaded
+
+                    const short WAIT_TIME_IN_MS = 200;
+                    Console.WriteLine("BW_DoWork: audioFileReader is NULL. Retrying the operation...");
+                    Thread.Sleep(WAIT_TIME_IN_MS);
+                    
+                
+               
                 }
                
             }
@@ -403,6 +410,10 @@ namespace TheFancyPlayer
 
         void BW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Console.WriteLine("BW_RunWorkerCompleted: There was an error while playing the song: " + e.Error.ToString());
+            }
             next();
         }
 
@@ -417,7 +428,7 @@ namespace TheFancyPlayer
 
         public  void pause()
         {
-
+          
             waveOutDevice.Pause();
             isPlaying = false;
             Program.mainForm.UITasksWhenMusicPause();
