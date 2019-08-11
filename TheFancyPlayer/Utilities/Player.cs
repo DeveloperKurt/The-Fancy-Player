@@ -392,9 +392,9 @@ namespace TheFancyPlayer
                 }
                 catch (Exception exception)
                 {
-                    pauseBackgroundWorker.WaitOne(Timeout.Infinite);
+            
                     Console.WriteLine("Exception thrown when playing the song: " + exception.Message + " \n" + exception.StackTrace);
-                   
+                    break;
                 }
                
             }
