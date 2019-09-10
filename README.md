@@ -1,5 +1,14 @@
 # The-Fancy-Player
 
+                                                NOTE FOR RECRUITERS
+This project had been developed during my early years of programming therefore the code is not cleanly written, tightly coupled, OOP concepts are not used in its full potential and grammar mistakes had been made in the comments and function names and I am well aware of these problems. I am going to organize the code as I find more free time.
+
+So please, do not judge my skills by this project but rather judge me by BrainTwins which you can always ask me to show its source code, thanks for your attention.
+
+
+
+
+
 <a href="https://ibb.co/mHmFzGX"><img src="https://i.ibb.co/jLdZ4TW/The-Fancy-Player.png" alt="The-Fancy-Player" border="0"></a><br /><a target='_blank' href='https://ibb.co/mHmFzGX'></a><br />
 
                             -------------------A fancy music player!--------------------
